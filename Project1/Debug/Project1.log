@@ -1,8 +1,8 @@
 ﻿  FileName.cpp
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(44,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(91,36): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(95,36): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(101,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(102,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(107,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(46,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(95,36): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(99,36): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(105,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(106,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(111,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\Debug\Project1.exe

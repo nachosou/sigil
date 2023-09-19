@@ -24,21 +24,23 @@ struct Ball
 
 struct Block
 {
-	float positionX;
-	float positionY;
-	int width;
-	int height;
+	float positionX = 65;
+	float positionY = 748;
+	int width = 100;
+	int height = 20;
 };
 
 void paddleMovement(Paddle& paddle);
 void ballMovement(Ball& ball, int width, int height);
 void firstBallMovement(Ball& ball);
+void blocks();
 bool collisionWithUpFrame(Ball& ball);
 bool collisionWithDownFrame(Ball& ball, int heightScreen);
 bool collisionWithPlayer(Ball& ball, Paddle& paddle);
 bool collisionWithLeftFrame(Ball& ball, int widthScreen);
 bool collisionWithLeftFrame(Ball& ball, int widthScreen);
 void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle);
+
 
 void main()
 {
@@ -77,6 +79,8 @@ void main()
 
 		slSetForeColor(0.50196078431372549019607843137255, 0.74901960784313725490196078431373, 0.61568627450980392156862745098039, 0.8);
 		slCircleFill(ball.positionX, ball.positionY, ball.radius, 75);
+
+		blocks();
 
 		slRender();
 	}
@@ -250,5 +254,17 @@ void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle)
 	{
 		ball.positionX += ball.radius;
 		ball.speedX = -ball.speedX;
+	}
+}
+
+void  blocks()
+{
+	Block block[50];
+
+	for (int i = 0; i < 10; i++)
+	{
+		slRectangleFill(block[i].positionX, block[i].positionY, block[i].width, block[i].height);
+
+		block[i + 1].positionX += 65;
 	}
 }
