@@ -19,6 +19,7 @@ struct Ball
 	float positionY;
 	float speedX;
 	float speedY;
+	float radius;
 };
 
 struct Block
@@ -32,40 +33,50 @@ struct Block
 void paddleMovement(Paddle& paddle);
 void ballMovement(Ball& ball, int width, int height);
 void firstBallMovement(Ball& ball);
+bool collisionWithUpFrame(Ball& ball);
+bool collisionWithDownFrame(Ball& ball, int heightScreen);
+bool collisionWithPlayer(Ball& ball, Paddle& paddle);
+bool collisionWithLeftFrame(Ball& ball, int widthScreen);
+bool collisionWithLeftFrame(Ball& ball, int widthScreen);
+void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle);
 
 void main()
 {
-	const int width = 1366;
-	const int height = 768;
+	const int widthScreen = 1366;
+	const int heightScreen = 768;
 
 	Paddle paddle;
 	Ball ball;
 
-	paddle.positionX = width * 0.5;
+	paddle.positionX = widthScreen / 2;
 	paddle.positionY = 50;
 	paddle.speed = 600;
 	paddle.width = 300;
 	paddle.height = 50;
 
-	ball.positionX = width / 2;
-	ball.positionY = height / 2;
-	ball.speedX = 100;
-	ball.speedY = 100;
+	ball.positionX = widthScreen / 2;
+	ball.positionY = heightScreen / 2;
+	ball.speedX = 500;
+	ball.speedY = 500;
+	ball.radius = 15;
 
 	bool newScene = true;
 
-	slWindow(width, height, "Simple SIGIL Example", false);
+	slWindow(widthScreen, heightScreen, "Simple SIGIL Example", false);
 
 	while (!slShouldClose() && !slGetKey(SL_KEY_ESCAPE))
 	{
-		slSetBackColor(0.5, 0.75, 1.0);
+		slSetBackColor(0.92549019607843137254901960784314, 0.89803921568627450980392156862745, 0.8078431372549019607843137254902);
 
 		paddleMovement(paddle);
-		ballMovement(ball, width, height);
+		ballMovement(ball, widthScreen, heightScreen);
+		recochet(ball, heightScreen, widthScreen, paddle);
 
-		slSetForeColor(1, 0, 0, 1);
-		slRectangleFill(paddle.positionX, paddle.positionY, paddle.width, paddle.height);
-		slCircleFill(ball.positionX, ball.positionY, 15, 75);
+		slSetForeColor(0, 0.5176470588, 0.5254901961, 0.8);
+		slRectangleFill(paddle.positionX + paddle.width / 2, paddle.positionY + paddle.height / 2, paddle.width, paddle.height);
+
+		slSetForeColor(0.50196078431372549019607843137255, 0.74901960784313725490196078431373, 0.61568627450980392156862745098039, 0.8);
+		slCircleFill(ball.positionX, ball.positionY, ball.radius, 75);
 
 		slRender();
 	}
@@ -85,7 +96,7 @@ void paddleMovement(Paddle& paddle)
 	}
 }
 
-void ballMovement(Ball& ball, int width, int height)
+void ballMovement(Ball& ball, int width, int heightScreen)
 {
 	ball.positionX += ball.speedX * slGetDeltaTime();
 	ball.positionY += ball.speedY * slGetDeltaTime();
@@ -132,4 +143,112 @@ bool collisionWithDownFrame(Ball& ball, int heightScreen)
 	}
 
 	return false;
+}
+
+bool collisionWithRightFrame(Ball& ball, int widthScreen)
+{
+	if (ball.positionX >= widthScreen)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool collisionWithLeftFrame(Ball& ball, int widthScreen)
+{
+	if (ball.positionX <= 0)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool collisionWithPlayer(Ball& ball, Paddle& paddle)
+{
+	float xPosition = ball.positionX;
+	float yPosition = ball.positionY;
+
+	if (ball.positionX < paddle.positionX)
+	{
+		xPosition = paddle.positionX;
+	}
+	else if (ball.positionX > paddle.positionX + paddle.width)
+	{
+		xPosition = paddle.positionX + paddle.width;
+	}
+
+	if (ball.positionY < paddle.positionY)
+	{
+		yPosition = paddle.positionY;
+	}
+	else if (ball.positionY > paddle.positionY + paddle.height)
+	{
+		yPosition = paddle.positionY + paddle.height;
+	}
+
+	float xDistance = ball.positionX - xPosition;
+	float yDistance = ball.positionY - yPosition;
+
+	float distance = sqrt((xDistance * xDistance) + (yDistance * yDistance));
+
+	if (distance <= ball.radius) {
+		return true;
+	}
+
+	return false;
+}
+
+void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle)
+{
+	bool hitPaddleOne = collisionWithPlayer(ball, paddle);
+
+	bool hitUpFrame = collisionWithUpFrame(ball);
+	bool hitDownFrame = collisionWithDownFrame(ball, heightScreen);
+	bool hitRightFrame = collisionWithRightFrame(ball, widthScreen);
+	bool hitLeftFrame = collisionWithLeftFrame(ball, widthScreen);
+
+	if (hitPaddleOne)
+	{
+		if (ball.positionX < paddle.positionX + paddle.width / 3)
+		{
+			ball.positionY += ball.radius;
+			ball.speedY = -ball.speedY;
+			ball.speedX = -500;
+		}
+		else if (ball.positionX > paddle.positionX + (paddle.width / 3 + paddle.width / 3))
+		{
+			ball.positionY += ball.radius;
+			ball.speedY = -ball.speedY;
+			ball.speedX = 500;
+		}
+		else
+		{
+			ball.positionY += ball.radius;
+			ball.speedY = -ball.speedY;
+			ball.speedX = 0;
+		}
+	}
+
+	if (hitUpFrame)
+	{
+		ball.positionY += ball.radius;
+		ball.speedY = -ball.speedY;
+	}
+	if (hitDownFrame)
+	{
+		ball.positionY -= ball.radius;
+		ball.speedY = -ball.speedY;
+	}
+	if (hitRightFrame)
+	{
+		ball.positionX -= ball.radius;
+		ball.speedX = -ball.speedX;
+	}
+	if (hitLeftFrame)
+	{
+		ball.positionX += ball.radius;
+		ball.speedX = -ball.speedX;
+	}
 }
