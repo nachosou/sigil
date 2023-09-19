@@ -1,5 +1,7 @@
 ﻿  FileName.cpp
-C:\Users\Aula 2\source\repos\Project1\Project1\FileName.cpp(31,1): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
-C:\Users\Aula 2\source\repos\Project1\Project1\FileName.cpp(64,28): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
-C:\Users\Aula 2\source\repos\Project1\Project1\FileName.cpp(68,28): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
-  Project1.vcxproj -> C:\Users\Aula 2\source\repos\Project1\Debug\Project1.exe
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(35,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(76,36): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(80,36): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(86,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(87,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\Debug\Project1.exe
