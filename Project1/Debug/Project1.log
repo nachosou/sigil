@@ -5,6 +5,6 @@ C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(159,37): warning C4244: '+=':
 C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(166,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
 C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(167,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
 C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(172,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(341,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(342,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(347,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(348,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\Debug\Project1.exe

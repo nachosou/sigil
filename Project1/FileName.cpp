@@ -337,10 +337,15 @@ void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool&
 {
 	if (ball.positionY <= 0)
 	{
+		if (ball.speedX == 0)
+		{
+			ball.speedX = 500;
+		}
+
+		firstBallMovement(ball);
 		playerLife--;
 		ball.positionX = widthScreen / 2;
-		ball.positionY = heightScreen / 2;
-		firstBallMovement(ball);
+		ball.positionY = heightScreen / 2;	
 	}
 
 	cout << playerLife << endl;
