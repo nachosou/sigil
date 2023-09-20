@@ -1,5 +1,6 @@
 #include "sl.h"
 #include "scenes.h"
+#include "menu.h"
 #include <iostream>
 #include <time.h>
 
@@ -42,7 +43,7 @@ bool collisionWithRightFrame(Ball& ball, int widthScreen);
 bool collisionWithLeftFrame(Ball& ball, int widthScreen);
 void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle);
 void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene);
-
+void drawMainGame(Paddle paddle, Ball ball);
 
 void main()
 {
@@ -66,11 +67,14 @@ void main()
 	ball.speedY = 500;
 	ball.radius = 15;
 
-	GameScenes actualScene = GameScenes::Game;
+	GameScenes actualScene = GameScenes::Menu;
 	bool newScene = true;
 	GameScenes prevScene = actualScene;
 
 	slWindow(widthScreen, heightScreen, "Simple SIGIL Example", false);
+
+	int font = slLoadFont("C:/Users/Nacho/Desktop/sigil/Assets/Monoton-Regular.ttf");
+	slSetFont(font, 20);
 
 	while (!slShouldClose() && !slGetKey(SL_KEY_ESCAPE) && exitProgram)
 	{
@@ -80,7 +84,7 @@ void main()
 		switch (actualScene)
 		{
 		case GameScenes::Menu:
-
+			menu(actualScene);
 			break;
 		case GameScenes::Game:
 			mainGame(ball, widthScreen, heightScreen, paddle, playerLife, newScene);
@@ -94,22 +98,14 @@ void main()
 		default:
 			break;
 		}
-		slSetBackColor(0.92549019607843137254901960784314, 0.89803921568627450980392156862745, 0.8078431372549019607843137254902);
-
+		
 		switch (actualScene)
 		{
 		case GameScenes::Menu:
-
+			drawMenu(font);
 			break;
 		case GameScenes::Game:
-			slSetForeColor(0, 0.5176470588, 0.5254901961, 0.8);
-			slRectangleFill(paddle.positionX + paddle.width / 2, paddle.positionY + paddle.height / 2, paddle.width, paddle.height);
-
-			slSetForeColor(0.50196078431372549019607843137255, 0.74901960784313725490196078431373, 0.61568627450980392156862745098039, 0.8);
-			slCircleFill(ball.positionX, ball.positionY, ball.radius, 75);
-
-			slSetForeColor(0.95294117647058823529411764705882, 0.52549019607843137254901960784314, 0.18823529411764705882352941176471, 0.8);
-			blocks();
+			drawMainGame(paddle, ball);
 			break;
 		case GameScenes::Rules:
 
@@ -141,6 +137,20 @@ void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int
 	lifes(playerLife, ball, widthScreen, heightScreen, newScene);
 
 	paddleMovement(paddle, widthScreen);
+}
+
+void drawMainGame(Paddle paddle, Ball ball)
+{
+	slSetBackColor(0.92549019607843137254901960784314, 0.89803921568627450980392156862745, 0.8078431372549019607843137254902);
+
+	slSetForeColor(0, 0.5176470588, 0.5254901961, 0.8);
+	slRectangleFill(paddle.positionX + paddle.width / 2, paddle.positionY + paddle.height / 2, paddle.width, paddle.height);
+
+	slSetForeColor(0.50196078431372549019607843137255, 0.74901960784313725490196078431373, 0.61568627450980392156862745098039, 0.8);
+	slCircleFill(ball.positionX, ball.positionY, ball.radius, 75);
+
+	slSetForeColor(0.95294117647058823529411764705882, 0.52549019607843137254901960784314, 0.18823529411764705882352941176471, 0.8);
+	blocks();
 }
 
 void paddleMovement(Paddle& paddle, int widthScreen)

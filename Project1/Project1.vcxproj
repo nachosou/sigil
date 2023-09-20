@@ -84,6 +84,11 @@
       <AdditionalLibraryDirectories>C:\Users\Nacho\Desktop\sigil\lib\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sigil.lib</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>cd "$(OutDir)"
+mkdir "Assets"
+xcopy /y "$(SolutionDir)Assets" "$(OutDir)Assets"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -103,6 +108,11 @@
       <AdditionalLibraryDirectories>C:\Users\Nacho\Desktop\sigil\lib\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sigil.lib</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>cd "$(OutDir)"
+mkdir "Assets"
+xcopy /y "$(SolutionDir)Assets" "$(OutDir)Assets"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -137,9 +147,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FileName.cpp" />
+    <ClCompile Include="menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="scenes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

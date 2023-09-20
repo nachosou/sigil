@@ -1,10 +1,5 @@
-﻿  FileName.cpp
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(48,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(152,37): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(159,37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(166,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(167,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(172,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(347,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(348,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+﻿  A subdirectory or file Assets already exists.
+  C:\Users\Nacho\Desktop\sigil\Assets\Monoton-Regular.ttf
+  1 File(s) copied
+  menu.cpp
   Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\Debug\Project1.exe
