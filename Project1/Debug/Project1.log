@@ -2,14 +2,14 @@
   C:\Users\Nacho\Desktop\sigil\Assets\Monoton-Regular.ttf
   1 File(s) copied
   FileName.cpp
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(51,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(167,37): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(174,37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(181,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(52,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(168,37): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(175,37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
 C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(182,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(187,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(336,51): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(337,81): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(394,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(395,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(183,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(188,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(290,51): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(291,81): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(415,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(416,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\Debug\Project1.exe
