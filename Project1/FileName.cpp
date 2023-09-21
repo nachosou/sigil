@@ -26,24 +26,26 @@ struct Ball
 
 struct Block
 {
-	float positionX = 75;
-	float positionY = 748;
-	int width = 104;
+	float positionX = 85;
+	float positionY = 768;
+	int width = 77;
 	int height = 20;
+	bool isActive;
 };
 
 void paddleMovement(Paddle& paddle, int widthScreen);
 void ballMovement(Ball& ball, int width, int height);
 void firstBallMovement(Ball& ball);
 void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool& newScene);
-void blocks();
+void setBlocks(Block block[], int numBlock, int heightScreen);
+void drawBlocks(Block blocks[], int numBlock);
 bool collisionWithUpFrame(Ball& ball, int heightScreen);
 bool collisionWithPlayer(Ball& ball, Paddle& paddle);
 bool collisionWithRightFrame(Ball& ball, int widthScreen);
 bool collisionWithLeftFrame(Ball& ball, int widthScreen);
 void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle);
-void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene);
-void drawMainGame(Paddle paddle, Ball ball);
+void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[]);
+void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[]);
 
 void main()
 {
@@ -51,9 +53,11 @@ void main()
 	const int heightScreen = 768;
 	int playerLife = 3;
 	bool exitProgram = true;
+	const int numBlock = 50;
 
 	Paddle paddle;
 	Ball ball;
+	Block blocks[numBlock];
 
 	paddle.positionX = widthScreen / 2 - 150;
 	paddle.positionY = 50;
@@ -87,7 +91,7 @@ void main()
 			menu(actualScene);
 			break;
 		case GameScenes::Game:
-			mainGame(ball, widthScreen, heightScreen, paddle, playerLife, newScene);
+			mainGame(ball, widthScreen, heightScreen, paddle, playerLife, newScene, numBlock, blocks);
 			break;
 		case GameScenes::Rules:
 
@@ -105,7 +109,7 @@ void main()
 			drawMenu(font);
 			break;
 		case GameScenes::Game:
-			drawMainGame(paddle, ball);
+			drawMainGame(paddle, ball, numBlock, blocks);
 			break;
 		case GameScenes::Rules:
 
@@ -123,7 +127,7 @@ void main()
 	slClose();
 }
 
-void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene)
+void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[])
 {
 	if (newScene)
 	{
@@ -137,9 +141,11 @@ void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int
 	lifes(playerLife, ball, widthScreen, heightScreen, newScene);
 
 	paddleMovement(paddle, widthScreen);
+
+	setBlocks(blocks, numBlock, heightScreen);
 }
 
-void drawMainGame(Paddle paddle, Ball ball)
+void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[])
 {
 	slSetBackColor(0.92549019607843137254901960784314, 0.89803921568627450980392156862745, 0.8078431372549019607843137254902);
 
@@ -149,8 +155,7 @@ void drawMainGame(Paddle paddle, Ball ball)
 	slSetForeColor(0.50196078431372549019607843137255, 0.74901960784313725490196078431373, 0.61568627450980392156862745098039, 0.8);
 	slCircleFill(ball.positionX, ball.positionY, ball.radius, 75);
 
-	slSetForeColor(0.95294117647058823529411764705882, 0.52549019607843137254901960784314, 0.18823529411764705882352941176471, 0.8);
-	blocks();
+	drawBlocks(blocks, numBlock);
 }
 
 void paddleMovement(Paddle& paddle, int widthScreen)
@@ -314,31 +319,63 @@ void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle)
 	}
 }
 
-void  blocks()
+void  setBlocks(Block blocks[], int numBlock, int heightScreen)
 {
-	Block block[24];
+	int windowSeparation = 15;
+	int verticalDisplacement = blocks->height + 20;
+	int horizontalDisplacement = blocks->width + 20;
 
-	for (int i = 0; i < 12; i++)
+	int counter = 0;
+
+	for (int i = 0; i < numBlock / 14; i++)
 	{
-		for (int i = 0; i < 12; i++)
+		for (int j = i * 14; j < numBlock; j++)
 		{
-			slRectangleFill(block[i].positionX, block[i].positionY, block[i].width, block[i].height);
+			blocks[j].isActive = true;
 
-			block[i + 1].positionX = block[i].positionX + 110;
+			blocks[j].positionX = blocks[j].width / 2 + 15 + (horizontalDisplacement) * counter;
+			blocks[j].positionY = heightScreen - blocks[j].height / 2 - windowSeparation - verticalDisplacement * i;
 
-			if (i == 12)
+			counter++;
+			if (counter >= 14)
 			{
-				block[i].positionX = 10;
+				counter = 0;
+			}
+		}
+	}
+}
+
+void drawBlocks(Block blocks[], int numBlock)
+{
+	for (int i = 0; i < numBlock; i++)
+	{
+		if (i < 14 || i > 28)
+		{
+			if (i % 2 == 0)
+			{
+				slSetForeColor(0.95294117647058823529411764705882, 0.52549019607843137254901960784314, 0.18823529411764705882352941176471, 0.8);
+			}
+			else
+			{
+				slSetForeColor(0, 0.5176470588, 0.5254901961, 0.8);
 			}
 		}
 
-		for (int i = 0; i < 12; i++)
+		if (i > 14 && i < 28)
 		{
-			block[i].positionY -= 30;
-
-			slRectangleFill(block[i].positionX, block[i].positionY, block[i].width, block[i].height);
-
-			block[i + 1].positionX = block[i].positionX + 110;
+			if (i % 2 == 0)
+			{
+				slSetForeColor(0, 0.5176470588, 0.5254901961, 0.8);
+			}
+			else
+			{
+				slSetForeColor(0.95294117647058823529411764705882, 0.52549019607843137254901960784314, 0.18823529411764705882352941176471, 0.8);
+			}
+		}
+		
+		if (blocks[i].isActive) 
+		{	
+			slRectangleFill(blocks[i].positionX, blocks[i].positionY, blocks[i].width, blocks[i].height);
 		}
 	}
 }
