@@ -76,12 +76,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Nacho\Desktop\sigil\lib\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Aula 2\Documents\GitHub\sigil\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Nacho\Desktop\sigil\lib\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Aula 2\Documents\GitHub\sigil\lib\lib;C:\Users\Nacho\Desktop\sigil\lib\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sigil.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
@@ -146,12 +146,19 @@ xcopy /y "$(SolutionDir)Assets" "$(OutDir)Assets"</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ball.cpp" />
+    <ClCompile Include="blocks.cpp" />
     <ClCompile Include="FileName.cpp" />
     <ClCompile Include="menu.cpp" />
+    <ClCompile Include="paddle.cpp" />
+    <ClCompile Include="rules.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header.h" />
+    <ClInclude Include="ball.h" />
+    <ClInclude Include="blocks.h" />
     <ClInclude Include="menu.h" />
+    <ClInclude Include="paddle.h" />
+    <ClInclude Include="rules.h" />
     <ClInclude Include="scenes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,15 +1,12 @@
-﻿  A subdirectory or file Assets already exists.
-  C:\Users\Nacho\Desktop\sigil\Assets\Monoton-Regular.ttf
-  1 File(s) copied
+﻿  Ya existe el subdirectorio o el archivo Assets.
+  C:\Users\Aula 2\Documents\GitHub\sigil\Assets\Monoton-Regular.ttf
+  1 archivo(s) copiado(s)
+  blocks.cpp
+C:\Users\Aula 2\Documents\GitHub\sigil\Project1\blocks.cpp(17,51): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Aula 2\Documents\GitHub\sigil\Project1\blocks.cpp(18,88): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
   FileName.cpp
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(52,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(168,37): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(175,37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(182,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(183,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(188,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(290,51): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(291,88): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(415,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(416,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\Debug\Project1.exe
+C:\Users\Aula 2\Documents\GitHub\sigil\Project1\FileName.cpp(34,1): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
+C:\Users\Aula 2\Documents\GitHub\sigil\Project1\FileName.cpp(339,32): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Aula 2\Documents\GitHub\sigil\Project1\FileName.cpp(340,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+  Generando código...
+  Project1.vcxproj -> C:\Users\Aula 2\Documents\GitHub\sigil\Debug\Project1.exe

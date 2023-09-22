@@ -8,7 +8,7 @@ void menu(GameScenes& actualScene)
         actualScene = GameScenes::Game;
     }
 
-    if (slGetKey(SL_KEY_DELETE))
+    if (slGetKey(SL_KEY_TAB))
     {
         actualScene = GameScenes::Rules;
     }
