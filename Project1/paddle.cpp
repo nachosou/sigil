@@ -22,7 +22,7 @@ void paddleMovement(Paddle& paddle, int widthScreen)
 	}
 	if (slGetKey(SL_KEY_RIGHT))
 	{
-		if (paddle.positionX <= widthScreen - paddle.height)
+		if (paddle.positionX <= widthScreen - paddle.width)
 		{
 			paddle.positionX += paddle.speed * slGetDeltaTime();
 		}

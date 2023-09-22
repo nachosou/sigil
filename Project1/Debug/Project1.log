@@ -1,12 +1,8 @@
 ﻿  Ya existe el subdirectorio o el archivo Assets.
   C:\Users\Aula 2\Documents\GitHub\sigil\Assets\Monoton-Regular.ttf
   1 archivo(s) copiado(s)
-  blocks.cpp
-C:\Users\Aula 2\Documents\GitHub\sigil\Project1\blocks.cpp(17,51): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Aula 2\Documents\GitHub\sigil\Project1\blocks.cpp(18,88): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-  FileName.cpp
-C:\Users\Aula 2\Documents\GitHub\sigil\Project1\FileName.cpp(34,1): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
-C:\Users\Aula 2\Documents\GitHub\sigil\Project1\FileName.cpp(339,32): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Aula 2\Documents\GitHub\sigil\Project1\FileName.cpp(340,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-  Generando código...
+  paddle.cpp
+C:\Users\Aula 2\Documents\GitHub\sigil\Project1\paddle.cpp(10,37): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Aula 2\Documents\GitHub\sigil\Project1\paddle.cpp(20,37): warning C4244: '-=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Aula 2\Documents\GitHub\sigil\Project1\paddle.cpp(27,37): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
   Project1.vcxproj -> C:\Users\Aula 2\Documents\GitHub\sigil\Debug\Project1.exe
