@@ -85,9 +85,7 @@
       <AdditionalDependencies>sigil.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>cd "$(OutDir)"
-mkdir "Assets"
-xcopy /y "$(SolutionDir)Assets" "$(OutDir)Assets"</Command>
+      <Command>xcopy /y /i "$(ProjectDir)Assets" "$(OutDir)Assets"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

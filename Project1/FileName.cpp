@@ -42,7 +42,7 @@ void main()
 
 	setBlocks(blocks, numBlock, heightScreen);
 
-	int font = slLoadFont("C:/Users/Aula 2/Documents/GitHub/sigil/Assets/Monoton-Regular.ttf");
+	int font = slLoadFont("Assets/Monoton-Regular.ttf");
 	slSetFont(font, 20);
 
 	while (!slShouldClose() && !slGetKey(SL_KEY_ESCAPE) && exitProgram)
