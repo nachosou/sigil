@@ -8,16 +8,16 @@
 
 using namespace std;
 
-void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool& newScene, int font);
+void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool& newScene, int font, int howManyBlocksDied, int numBlock);
 bool collisionWithUpFrame(Ball ball, int heightScreen);
 bool collisionWithPlayer(Ball ball, Paddle& paddle);
 bool collisionWithRightFrame(Ball ball, int widthScreen);
 bool collisionWithLeftFrame(Ball ball, int widthScreen);
-void collisionWithBlocks(Ball& ball, Block blocks[], int numBlock);
-void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Block blocks[], int numBlock);
-void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[], int font);
+void collisionWithBlocks(Ball& ball, Block blocks[], int numBlock, int& howManyBlocksDied);
+void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Block blocks[], int numBlock, int howManyBlocksDied);
+void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[], int font, int howManyBlocksDied);
 void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[]);
-void winOrLose(int playerLife, Block blocks[]);
+void winOrLose(int playerLife, int howManyBlocksDied, int numBlock);
 
 void main()
 {
@@ -26,6 +26,7 @@ void main()
 	int playerLife = 3;
 	bool exitProgram = true;
 	const int numBlock = 42;
+	int howManyBlocksDied = 0;
 
 	Paddle paddle;
 	Ball ball;
@@ -56,7 +57,7 @@ void main()
 			menu(actualScene);
 			break;
 		case GameScenes::Game:
-			mainGame(ball, widthScreen, heightScreen, paddle, playerLife, newScene, numBlock, blocks, font);
+			mainGame(ball, widthScreen, heightScreen, paddle, playerLife, newScene, numBlock, blocks, font, howManyBlocksDied);
 			break;
 		case GameScenes::Rules:
 			rules(actualScene);
@@ -92,7 +93,7 @@ void main()
 	slClose();
 }
 
-void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[], int font)
+void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[], int font, int howManyBlocksDied)
 {
 	if (newScene)
 	{
@@ -101,11 +102,13 @@ void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int
 
 	ballMovement(ball, widthScreen, heightScreen);
 
-	lifes(playerLife, ball, widthScreen, heightScreen, newScene, font);
+	lifes(playerLife, ball, widthScreen, heightScreen, newScene, font, howManyBlocksDied, numBlock);
 
 	paddleMovement(paddle, widthScreen);
 
-	recochet(ball, heightScreen, widthScreen, paddle, blocks, numBlock);
+	recochet(ball, heightScreen, widthScreen, paddle, blocks, numBlock, howManyBlocksDied);
+
+	winOrLose(playerLife, howManyBlocksDied, numBlock);
 }
 
 void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[])
@@ -121,7 +124,7 @@ void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[])
 	drawBlocks(blocks, numBlock);
 }
 
-void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Block blocks[], int numBlock)
+void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Block blocks[], int numBlock, int howManyBlocksDied)
 {
 	bool hitPaddle = collisionWithPlayer(ball, paddle);
 
@@ -129,7 +132,7 @@ void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Bloc
 	bool hitRightFrame = collisionWithRightFrame(ball, widthScreen);
 	bool hitLeftFrame = collisionWithLeftFrame(ball, widthScreen);
 
-	collisionWithBlocks(ball, blocks, numBlock);
+	collisionWithBlocks(ball, blocks, numBlock, howManyBlocksDied);
 
 	if (hitPaddle)
 	{
@@ -140,7 +143,7 @@ void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Bloc
 			ball.speedX = -500;
 		}
 		else if (ball.positionX > paddle.positionX + (paddle.width / 3 + paddle.width / 3))
-		{	
+		{
 			ball.positionY += ball.radius;
 			ball.speedY = -ball.speedY;
 			ball.speedX = 500;
@@ -170,19 +173,29 @@ void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Bloc
 	}
 }
 
-void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool& newScene, int font)
+void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool& newScene, int font, int howManyBlocksDied, int numBlock)
 {
-	if (ball.positionY <= 0)
-	{
-		if (ball.speedX == 0)
-		{
-			ball.speedX = 500;
-		}
+	bool areBlocksAlive = true;
 
-		firstBallMovement(ball);
-		playerLife--;
-		ball.positionX = widthScreen / 2;
-		ball.positionY = heightScreen / 2;
+	if (howManyBlocksDied == numBlock)
+	{
+		areBlocksAlive = false;
+	}
+
+	if (areBlocksAlive)
+	{
+		if (ball.positionY <= 0)
+		{
+			if (ball.speedX == 0)
+			{
+				ball.speedX = 500;
+			}
+
+			firstBallMovement(ball);
+			playerLife--;
+			ball.positionX = widthScreen / 2;
+			ball.positionY = heightScreen / 2;
+		}
 	}
 
 	switch (playerLife)
@@ -215,17 +228,20 @@ void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool&
 		slCircleFill(60, 758, 15, 75);
 		slCircleFill(90, 758, 15, 75);
 		break;
-	}	
+	}
 }
 
-void winOrLose(int playerLife, Block blocks[])
+void winOrLose(int playerLife, int howManyBlocksDied, int numBlock)
 {
 	if (playerLife <= 0)
 	{
 
 	}
 
+	if (howManyBlocksDied >= numBlock && playerLife < 0)
+	{
 
+	}
 }
 
 bool collisionWithUpFrame(Ball ball, int heightScreen)
@@ -293,7 +309,7 @@ bool collisionWithPlayer(Ball ball, Paddle& paddle)
 	return false;
 }
 
-void collisionWithBlocks(Ball& ball, Block blocks[], int numBlock)
+void collisionWithBlocks(Ball& ball, Block blocks[], int numBlock, int& howManyBlocksDied)
 {
 	for (int i = 0; i < numBlock; i++)
 	{
@@ -306,6 +322,7 @@ void collisionWithBlocks(Ball& ball, Block blocks[], int numBlock)
 			ball.positionY += ball.radius;
 			ball.speedY = -ball.speedY;
 			blocks[i].isActive = false;
+			howManyBlocksDied++;
 		}
 	}
 }

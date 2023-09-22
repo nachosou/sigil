@@ -1,10 +1,7 @@
-﻿  Ya existe el subdirectorio o el archivo Assets.
-  C:\Users\Aula 2\Documents\GitHub\sigil\Assets\Monoton-Regular.ttf
+﻿  C:\Users\Aula 2\Documents\GitHub\sigil\Project1\Assets\Monoton-Regular.ttf
   1 archivo(s) copiado(s)
   FileName.cpp
 C:\Users\Aula 2\Documents\GitHub\sigil\Project1\FileName.cpp(23,1): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
-C:\Users\Aula 2\Documents\GitHub\sigil\Project1\FileName.cpp(184,32): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\Aula 2\Documents\GitHub\sigil\Project1\FileName.cpp(185,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
-  rules.cpp
-  Generando código...
+C:\Users\Aula 2\Documents\GitHub\sigil\Project1\FileName.cpp(189,33): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Aula 2\Documents\GitHub\sigil\Project1\FileName.cpp(190,34): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
   Project1.vcxproj -> C:\Users\Aula 2\Documents\GitHub\sigil\Debug\Project1.exe
