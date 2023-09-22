@@ -36,7 +36,7 @@ struct Block
 void paddleMovement(Paddle& paddle, int widthScreen);
 void ballMovement(Ball& ball, int width, int height);
 void firstBallMovement(Ball& ball);
-void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool& newScene);
+void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool& newScene, int font);
 void setBlocks(Block block[], int numBlock, int heightScreen);
 void drawBlocks(Block blocks[], int numBlock);
 bool collisionWithUpFrame(Ball ball, int heightScreen);
@@ -45,7 +45,7 @@ bool collisionWithRightFrame(Ball ball, int widthScreen);
 bool collisionWithLeftFrame(Ball ball, int widthScreen);
 void collisionWithBlocks(Ball& ball, Block blocks[], int numBlock);
 void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Block blocks[], int numBlock);
-void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[]);
+void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[], int font);
 void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[]);
 
 void main()
@@ -94,7 +94,7 @@ void main()
 			menu(actualScene);
 			break;
 		case GameScenes::Game:
-			mainGame(ball, widthScreen, heightScreen, paddle, playerLife, newScene, numBlock, blocks);
+			mainGame(ball, widthScreen, heightScreen, paddle, playerLife, newScene, numBlock, blocks, font);
 			break;
 		case GameScenes::Rules:
 
@@ -130,7 +130,7 @@ void main()
 	slClose();
 }
 
-void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[])
+void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[], int font)
 {
 	if (newScene)
 	{
@@ -139,7 +139,7 @@ void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int
 
 	ballMovement(ball, widthScreen, heightScreen);
 
-	lifes(playerLife, ball, widthScreen, heightScreen, newScene);
+	lifes(playerLife, ball, widthScreen, heightScreen, newScene, font);
 
 	paddleMovement(paddle, widthScreen);
 
@@ -210,7 +210,7 @@ void firstBallMovement(Ball& ball)
 
 bool collisionWithUpFrame(Ball ball, int heightScreen)
 {
-	if (ball.positionY >= heightScreen)
+	if (ball.positionY >= heightScreen - 30)
 	{
 		return true;
 	}
@@ -288,7 +288,7 @@ void  setBlocks(Block blocks[], int numBlock, int heightScreen)
 			blocks[j].isActive = true;
 
 			blocks[j].positionX = blocks[j].width / 2 + 15 + (horizontalDisplacement)*counter;
-			blocks[j].positionY = heightScreen - blocks[j].height / 2 - windowSeparation - verticalDisplacement * i;
+			blocks[j].positionY = (heightScreen - 20) - blocks[j].height / 2 - windowSeparation - verticalDisplacement * i;
 
 			counter++;
 			if (counter >= 14)
@@ -401,7 +401,7 @@ void drawBlocks(Block blocks[], int numBlock)
 	}
 }
 
-void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool& newScene)
+void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool& newScene, int font)
 {
 	if (ball.positionY <= 0)
 	{
@@ -416,7 +416,23 @@ void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool&
 		ball.positionY = heightScreen / 2;
 	}
 
-	/*cout << playerLife << endl;*/
+	switch (playerLife)
+	{
+	case 1:
+		slSetFont(font, 25);
+		slText(10, 738, "1 VIDA");
+		break;
+	case 2:
+		slSetFont(font, 25);
+		slText(10, 738, " 2 VIDAS");
+		break;
+	case 3:
+		slSetFont(font, 25);
+		slText(10, 738, "3 VIDAS");
+		break;
+	default:
+		break;
+	}	
 }
 
 
