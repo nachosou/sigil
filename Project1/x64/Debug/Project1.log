@@ -1,11 +1,1 @@
-﻿  FileName.cpp
-FileName.obj : error LNK2019: símbolo externo slWindow sin resolver al que se hace referencia en la función main
-FileName.obj : error LNK2019: símbolo externo slClose sin resolver al que se hace referencia en la función main
-FileName.obj : error LNK2019: símbolo externo slShouldClose sin resolver al que se hace referencia en la función main
-FileName.obj : error LNK2019: símbolo externo slGetKey sin resolver al que se hace referencia en la función main
-FileName.obj : error LNK2019: símbolo externo slRender sin resolver al que se hace referencia en la función main
-FileName.obj : error LNK2019: símbolo externo slSetBackColor sin resolver al que se hace referencia en la función main
-FileName.obj : error LNK2019: símbolo externo slSetForeColor sin resolver al que se hace referencia en la función main
-FileName.obj : error LNK2019: símbolo externo slRectangleFill sin resolver al que se hace referencia en la función main
-C:\Users\Aula 2\Desktop\sigil-vc2015\lib\sigil.lib : warning LNK4272: el tipo de máquina de biblioteca 'x86' está en conflicto con el tipo de máquina de destino 'x64'
-C:\Users\Aula 2\source\repos\Project1\x64\Debug\Project1.exe : fatal error LNK1120: 8 externos sin resolver
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(439,5): error MSB8020: No se pueden encontrar las herramientas de compilación para v143 (Conjunto de herramientas de la plataforma = 'v143'). Para compilar con las herramientas de compilación v143, instale las herramientas de compilación v143. También puede actualizar a las herramientas actuales de Visual Studio. Para ello, seleccione el menú Proyecto o haga clic con el botón secundario en la solución y, a continuación, seleccione "Actualizar solución".
