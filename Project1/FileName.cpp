@@ -54,6 +54,8 @@ void main()
 		switch (actualScene)
 		{
 		case GameScenes::Menu:
+			startBall(ball);
+			startPaddle(paddle);
 			menu(actualScene);
 			break;
 		case GameScenes::Game:
@@ -113,12 +115,14 @@ void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int
 
 void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[])
 {
+	int paddleSprite = slLoadTexture("Assets/paddle.png");
+
 	slSetBackColor(0.92549019607843137254901960784314, 0.89803921568627450980392156862745, 0.8078431372549019607843137254902);
 
-	slSetForeColor(0, 0.5176470588, 0.5254901961, 0.8);
-	slRectangleFill(paddle.positionX + paddle.width / 2, paddle.positionY + paddle.height / 2, paddle.width, paddle.height);
+	slSetForeColor(1, 1, 1, 1);
+	slSprite(paddleSprite, paddle.positionX + paddle.width / 2, paddle.positionY + paddle.height / 2, paddle.width, paddle.height);
 
-	slSetForeColor(0.50196078431372549019607843137255, 0.74901960784313725490196078431373, 0.61568627450980392156862745098039, 0.8);
+	slSetForeColor(0, 0, 0, 1);
 	slCircleFill(ball.positionX, ball.positionY, ball.radius, 75);
 
 	drawBlocks(blocks, numBlock);
@@ -177,6 +181,9 @@ void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool&
 {
 	bool areBlocksAlive = true;
 
+	int aliveHeart = slLoadTexture("Assets/aliveHeart.png");
+	int deathHeart = slLoadTexture("Assets/deathHeart.png");
+
 	if (howManyBlocksDied == numBlock)
 	{
 		areBlocksAlive = false;
@@ -201,32 +208,31 @@ void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool&
 	switch (playerLife)
 	{
 	case 1:
-		slSetForeColor(1, 0, 0, 1);
-		slCircleFill(30, 758, 15, 75);
+		slSetForeColor(1, 1, 1, 1);
+		slSprite(aliveHeart, 30, 758, 31, 30);
 
-		slSetForeColor(1, 0, 0, 0.5);
-		slCircleFill(70, 758, 15, 75);
-		slCircleFill(110, 758, 15, 75);
+		slSprite(deathHeart, 70, 758, 31, 30);
+		slSprite(deathHeart, 110, 758, 31, 30);
 		break;
 	case 2:
-		slSetForeColor(1, 0, 0, 1);
-		slCircleFill(30, 758, 15, 75);
-		slCircleFill(70, 758, 15, 75);
+		slSetForeColor(1, 1, 1, 1);
+		slSprite(aliveHeart, 30, 758, 31, 30);
+		slSprite(aliveHeart, 70, 758, 31, 30);
 
-		slSetForeColor(1, 0, 0, 0.5);
-		slCircleFill(110, 758, 15, 75);
+		
+		slSprite(deathHeart, 110, 758, 31, 30);
 		break;
 	case 3:
-		slSetForeColor(1, 0, 0, 1);
-		slCircleFill(30, 758, 15, 75);
-		slCircleFill(70, 758, 15, 75);
-		slCircleFill(110, 758, 15, 75);
+		slSetForeColor(1, 1, 1, 1);
+		slSprite(aliveHeart, 30, 758, 31, 30);
+		slSprite(aliveHeart, 70, 758, 31, 30);
+		slSprite(aliveHeart, 110, 758, 31, 30);
 		break;
 	default:
-		slSetForeColor(1, 0, 0, 0.5);
-		slCircleFill(30, 758, 15, 75);
-		slCircleFill(70, 758, 15, 75);
-		slCircleFill(110, 758, 15, 75);
+		slSetForeColor(1, 1, 1, 1);
+		slSprite(deathHeart, 30, 758, 31, 30);
+		slSprite(deathHeart, 70, 758, 31, 30);
+		slSprite(deathHeart, 110, 758, 31, 30);
 		break;
 	}
 }

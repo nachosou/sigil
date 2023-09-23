@@ -1,7 +1,12 @@
-﻿  C:\Users\Nacho\Desktop\sigil\Project1\Assets\Monoton-Regular.ttf
-  1 File(s) copied
+﻿  C:\Users\Nacho\Desktop\sigil\Project1\Assets\aliveHeart.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\brick1.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\brick2.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\deathHeart.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\Monoton-Regular.ttf
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\paddle.png
+  6 File(s) copied
   FileName.cpp
 C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(23,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(196,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(197,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(203,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(204,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\Debug\Project1.exe
