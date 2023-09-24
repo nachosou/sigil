@@ -28,9 +28,6 @@ void setBlocks(Block blocks[], int numBlock, int heightScreen)
 
 void drawBlocks(Block blocks[], int numBlock)
 {
-	int brick1 = slLoadTexture("Assets/brick1.png");
-	int brick2 = slLoadTexture("Assets/brick2.png");
-
 	for (int i = 0; i < numBlock; i++)
 	{
 		if (blocks[i].isActive == true)
@@ -40,12 +37,12 @@ void drawBlocks(Block blocks[], int numBlock)
 				if (i % 2 == 0)
 				{
 					slSetForeColor(1, 1, 1, 1);
-					slSprite(brick2, blocks[i].positionX, blocks[i].positionY, blocks[i].width, blocks[i].height);
+					slSprite(block2, blocks[i].positionX, blocks[i].positionY, blocks[i].width, blocks[i].height);
 				}
 				else
 				{
 					slSetForeColor(1, 1, 1, 1);
-					slSprite(brick1, blocks[i].positionX, blocks[i].positionY, blocks[i].width, blocks[i].height);
+					slSprite(block1, blocks[i].positionX, blocks[i].positionY, blocks[i].width, blocks[i].height);
 				}
 			}
 
@@ -54,14 +51,20 @@ void drawBlocks(Block blocks[], int numBlock)
 				if (i % 2 == 0)
 				{
 					slSetForeColor(1, 1, 1, 1);
-					slSprite(brick1, blocks[i].positionX, blocks[i].positionY, blocks[i].width, blocks[i].height);
+					slSprite(block1, blocks[i].positionX, blocks[i].positionY, blocks[i].width, blocks[i].height);
 				}
 				else
 				{
 					slSetForeColor(1, 1, 1, 1);
-					slSprite(brick2, blocks[i].positionX, blocks[i].positionY, blocks[i].width, blocks[i].height);
+					slSprite(block2, blocks[i].positionX, blocks[i].positionY, blocks[i].width, blocks[i].height);
 				}
 			}	
 		}
 	}
+}
+
+void setSprites(int sprite1, int sprite2)
+{
+	block1 = sprite1;
+	block2 = sprite2;	
 }

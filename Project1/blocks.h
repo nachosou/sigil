@@ -10,6 +10,11 @@ struct Block
 	bool isActive = true;
 };
 
+static int block1;
+static int block2;
+
 void setBlocks(Block blocks[], int numBlock, int heightScreen);
 
 void drawBlocks(Block blocks[], int numBlock);
+
+void setSprites(int sprite1, int sprite2);

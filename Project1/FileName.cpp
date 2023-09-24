@@ -9,15 +9,17 @@
 using namespace std;
 
 void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool& newScene, int font, int howManyBlocksDied, int numBlock);
+void drawLifes(int playerLife, int aliveHeart, int deathHeart);
 bool collisionWithUpFrame(Ball ball, int heightScreen);
 bool collisionWithPlayer(Ball ball, Paddle& paddle);
 bool collisionWithRightFrame(Ball ball, int widthScreen);
 bool collisionWithLeftFrame(Ball ball, int widthScreen);
 void collisionWithBlocks(Ball& ball, Block blocks[], int numBlock, int& howManyBlocksDied);
 void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Block blocks[], int numBlock, int& howManyBlocksDied);
-void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[], int font, int& howManyBlocksDied);
-void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[]);
+void mainGame(GameScenes& actualScene, Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[], int font, int& howManyBlocksDied);
+void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[], int widthScreen, int heightScreen, int wallPaper, int paddleSprite, int aliveHeart, int deathHeart, int playerLife);
 void winOrLose(int playerLife, int howManyBlocksDied, int numBlock, int font, int widthScreen);
+void resetStats(Block blocks[], int numBlock, Ball& ball, Paddle& paddle, int& playerLife);
 
 void main()
 {
@@ -27,6 +29,12 @@ void main()
 	bool exitProgram = true;
 	const int numBlock = 42;
 	int howManyBlocksDied = 0;
+
+	/*float timer = 0;
+	timer += slGetDeltaTime();
+	char time[80];
+	sprintf_s(time, "TIME: %f", timer);
+	slText(widthScreen / 2, heightScreen / 2, time);*/
 
 	Paddle paddle;
 	Ball ball;
@@ -43,6 +51,27 @@ void main()
 
 	setBlocks(blocks, numBlock, heightScreen);
 
+	setSprites(slLoadTexture("Assets/brick1.png"), slLoadTexture("Assets/brick2.png"));
+
+	int paddleSprite = slLoadTexture("Assets/paddle.png");
+	int aliveHeart = slLoadTexture("Assets/aliveHeart.png");
+	int deathHeart = slLoadTexture("Assets/deathHeart.png");
+
+	int selectedPlay = slLoadTexture("Assets/playButtonSelected.png");;
+	int unselectedPlay = slLoadTexture("Assets/playButtonUnselected.png");
+	int selectedRules = slLoadTexture("Assets/rulesButtonSelected.png");
+	int unselectedRules = slLoadTexture("Assets/rulesButtonUnselected.png");
+	int selectedExit = slLoadTexture("Assets/exitButtonSelected.png");
+	int unselectedExit = slLoadTexture("Assets/exitButtonUnselected.png");
+	int selectedMenu = slLoadTexture("Assets/menuButtonSelected.png");
+	int unselectedMenu = slLoadTexture("Assets/menuButtonUnselected.png");
+	int credits = slLoadTexture("Assets/creditos.png");
+	int logo = slLoadTexture("Assets/logo.png");
+	int wallPaper = slLoadTexture("Assets/fondo.png");
+	int moveRules = slLoadTexture("Assets/moveRules.png");
+	int breakRules = slLoadTexture("Assets/breakRules.png");
+	int deathRules = slLoadTexture("Assets/deathRules.png");
+
 	int font = slLoadFont("Assets/Monoton-Regular.ttf");
 	slSetFont(font, 20);
 
@@ -54,15 +83,14 @@ void main()
 		switch (actualScene)
 		{
 		case GameScenes::Menu:
-			startBall(ball);
-			startPaddle(paddle);
-			menu(actualScene);
+			resetStats(blocks, numBlock, ball, paddle, playerLife);
+			drawMenu(actualScene, font, widthScreen, selectedPlay, unselectedPlay, selectedRules, unselectedRules, selectedExit, unselectedExit, credits, logo, wallPaper);
 			break;
 		case GameScenes::Game:
-			mainGame(ball, widthScreen, heightScreen, paddle, playerLife, newScene, numBlock, blocks, font, howManyBlocksDied);
+			mainGame(actualScene, ball, widthScreen, heightScreen, paddle, playerLife, newScene, numBlock, blocks, font, howManyBlocksDied);
 			break;
 		case GameScenes::Rules:
-			rules(actualScene);
+			drawRules(actualScene, wallPaper, font, heightScreen, breakRules, moveRules, deathRules, selectedMenu, unselectedMenu);
 			break;
 		case GameScenes::Exit:
 			exitProgram = false;
@@ -74,13 +102,13 @@ void main()
 		switch (actualScene)
 		{
 		case GameScenes::Menu:
-			drawMenu(font);
+			drawMenu(actualScene, font, widthScreen, selectedPlay, unselectedPlay, selectedRules, unselectedRules, selectedExit, unselectedExit, credits, logo, wallPaper);
 			break;
 		case GameScenes::Game:
-			drawMainGame(paddle, ball, numBlock, blocks);
+			drawMainGame(paddle, ball, numBlock, blocks, widthScreen, heightScreen, wallPaper, paddleSprite, aliveHeart, deathHeart, playerLife);
 			break;
 		case GameScenes::Rules:
-			drawRules(font, heightScreen);
+			drawRules(actualScene, wallPaper, font, heightScreen, breakRules, moveRules, deathRules, selectedMenu, unselectedMenu);
 			break;
 		case GameScenes::Exit:
 			exitProgram = false;
@@ -88,18 +116,21 @@ void main()
 		default:
 			break;
 		}
-
 		slRender();
 	}
-
 	slClose();
 }
 
-void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[], int font, int& howManyBlocksDied)
+void mainGame(GameScenes& actualScene, Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[], int font, int& howManyBlocksDied)
 {
 	if (newScene)
 	{
 		firstBallMovement(ball);
+	}
+
+	if (slGetKey(SL_KEY_BACKSPACE))
+	{
+		actualScene = GameScenes::Menu;
 	}
 
 	ballMovement(ball, widthScreen, heightScreen);
@@ -113,11 +144,10 @@ void mainGame(Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int
 	winOrLose(playerLife, howManyBlocksDied, numBlock, font, widthScreen);
 }
 
-void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[])
+void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[], int widthScreen, int heightScreen, int wallPaper, int paddleSprite, int aliveHeart, int deathHeart, int playerLife)
 {
-	int paddleSprite = slLoadTexture("Assets/paddle.png");
-
-	slSetBackColor(0.92549019607843137254901960784314, 0.89803921568627450980392156862745, 0.8078431372549019607843137254902);
+	slSetBackColor(1, 1, 1);
+	slSprite(wallPaper, widthScreen / 2, heightScreen / 2, widthScreen, heightScreen);
 
 	slSetForeColor(1, 1, 1, 1);
 	slSprite(paddleSprite, paddle.positionX + paddle.width / 2, paddle.positionY + paddle.height / 2, paddle.width, paddle.height);
@@ -126,6 +156,8 @@ void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[])
 	slCircleFill(ball.positionX, ball.positionY, ball.radius, 75);
 
 	drawBlocks(blocks, numBlock);
+
+	drawLifes(playerLife, aliveHeart, deathHeart);
 }
 
 void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Block blocks[], int numBlock, int& howManyBlocksDied)
@@ -181,9 +213,6 @@ void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool&
 {
 	bool areBlocksAlive = true;
 
-	int aliveHeart = slLoadTexture("Assets/aliveHeart.png");
-	int deathHeart = slLoadTexture("Assets/deathHeart.png");
-
 	if (howManyBlocksDied == numBlock)
 	{
 		areBlocksAlive = false;
@@ -203,37 +232,6 @@ void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool&
 			ball.positionX = widthScreen / 2;
 			ball.positionY = heightScreen / 2;
 		}
-	}
-
-	switch (playerLife)
-	{
-	case 1:
-		slSetForeColor(1, 1, 1, 1);
-		slSprite(aliveHeart, 30, 758, 31, 30);
-
-		slSprite(deathHeart, 70, 758, 31, 30);
-		slSprite(deathHeart, 110, 758, 31, 30);
-		break;
-	case 2:
-		slSetForeColor(1, 1, 1, 1);
-		slSprite(aliveHeart, 30, 758, 31, 30);
-		slSprite(aliveHeart, 70, 758, 31, 30);
-
-		
-		slSprite(deathHeart, 110, 758, 31, 30);
-		break;
-	case 3:
-		slSetForeColor(1, 1, 1, 1);
-		slSprite(aliveHeart, 30, 758, 31, 30);
-		slSprite(aliveHeart, 70, 758, 31, 30);
-		slSprite(aliveHeart, 110, 758, 31, 30);
-		break;
-	default:
-		slSetForeColor(1, 1, 1, 1);
-		slSprite(deathHeart, 30, 758, 31, 30);
-		slSprite(deathHeart, 70, 758, 31, 30);
-		slSprite(deathHeart, 110, 758, 31, 30);
-		break;
 	}
 }
 
@@ -333,4 +331,69 @@ void collisionWithBlocks(Ball& ball, Block blocks[], int numBlock, int& howManyB
 			howManyBlocksDied++;
 		}
 	}
+}
+
+void drawLifes(int playerLife, int aliveHeart, int deathHeart)
+{
+	switch (playerLife)
+	{
+	case 1:
+		slSetForeColor(1, 1, 1, 1);
+		slSprite(aliveHeart, 30, 758, 31, 30);
+
+		slSprite(deathHeart, 70, 758, 31, 30);
+		slSprite(deathHeart, 110, 758, 31, 30);
+		break;
+	case 2:
+		slSetForeColor(1, 1, 1, 1);
+		slSprite(aliveHeart, 30, 758, 31, 30);
+		slSprite(aliveHeart, 70, 758, 31, 30);
+
+
+		slSprite(deathHeart, 110, 758, 31, 30);
+		break;
+	case 3:
+		slSetForeColor(1, 1, 1, 1);
+		slSprite(aliveHeart, 30, 758, 31, 30);
+		slSprite(aliveHeart, 70, 758, 31, 30);
+		slSprite(aliveHeart, 110, 758, 31, 30);
+		break;
+	default:
+		slSetForeColor(1, 1, 1, 1);
+		slSprite(deathHeart, 30, 758, 31, 30);
+		slSprite(deathHeart, 70, 758, 31, 30);
+		slSprite(deathHeart, 110, 758, 31, 30);
+		break;
+	}
+}
+
+void resetStats(Block blocks[], int numBlock, Ball& ball, Paddle& paddle, int& playerLife)
+{
+	const int widthScreen = 1366;
+	const int heightScreen = 768;
+
+	for (int i = 0; i < numBlock; i++)
+	{
+		blocks[i].positionX = 85;
+		blocks[i].positionY = 85;
+		blocks[i].width = 77;
+		blocks[i].height = 20;
+		blocks[i].isActive = true;
+	}
+
+	setBlocks(blocks, numBlock, heightScreen);
+	
+	paddle.speed = 600;
+	paddle.width = 300;
+	paddle.height = 50;
+	paddle.positionX = widthScreen / 2 - paddle.width / 2;
+	paddle.positionY = 50;
+
+	ball.positionX = widthScreen / 2;
+	ball.positionY = heightScreen / 2;
+	ball.speedX = 500;
+	ball.speedY = 500;
+	ball.radius = 15;
+
+	playerLife = 3;
 }

@@ -1,6 +1,14 @@
 #pragma once
 #include "scenes.h"
 
-void menu(GameScenes& actualScene);
+struct menuButtons
+{
+	float positionX;
+	float positionY;
+	int width;
+	int height;
+};
 
-void drawMenu(int font);
+void drawMenu(GameScenes& actualScene, int font, int widthScreen, int selectedPlay, int unselectedPlay, int selectedRules, int unselectedRules, int selectedExit, int unselectedExit, int credits, int logo, int wallPaper);
+
+void menuButtons(GameScenes& actualScene, GameScenes scene, int buttonX, int buttonY, int width, int height, int buttonUnselected, int buttonSelected);

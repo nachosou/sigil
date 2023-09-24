@@ -1,28 +1,38 @@
 #include "rules.h"
 #include "include/sl.h"
 
-void rules(GameScenes& actualScene)
+void drawRules(GameScenes& actualScene, int wallPaper, int font, int heightScreen, int breakRules, int moveRules, int deathRules, int selectedMenu, int unselectedMenu)
 {
-    if (slGetKey(SL_KEY_BACKSPACE))
+    int rulesWidth = 300;
+    int rulesHeight = 300;
+
+    int buttonWidth = 150;
+    int butonHeight = 75;
+
+    slSetBackColor(1, 1, 1);
+    slSprite(wallPaper, 1366 / 2, 768 / 2, 1366, 768);
+
+    slSprite(breakRules, 200, 500, rulesWidth, rulesHeight);
+
+    slSprite(moveRules, 700, 500, rulesWidth, rulesHeight);
+
+    slSprite(deathRules, 200, 200, rulesWidth, rulesHeight);
+
+    if (slGetMouseX() >= 1266 - buttonWidth / 2
+        && slGetMouseX() <= 1266 + buttonWidth / 2
+        && slGetMouseY() >= 100 - butonHeight / 2
+        && slGetMouseY() <= 100 + butonHeight / 2)
     {
-        actualScene = GameScenes::Menu;
+        slSetForeColor(1, 1, 1, 1);
+        slSprite(selectedMenu, 1266, 100, buttonWidth, butonHeight);
+        if (slGetMouseButton(SL_MOUSE_BUTTON_LEFT))
+        {
+            actualScene = GameScenes::Menu;
+        }
     }
-}
-
-void drawRules(int font, int heightScreen)
-{
-    int middleX = heightScreen / 2;
-
-    slSetFont(font, 100);
-    slText(middleX - 100, 600, "PONG");
-
-    slSetFont(font, 50);
-    slText(50, 500, "In order to win you have to break all the blocks without losing all your lifes");
-
-    slText(50, 400, "You move with Left arrow(to the left) and Right arrow(to the right)");
-
-    slText(50, 300, "To go back to menu during the game press ENTER");
-
-    slSetFont(font, 25);
-    slText(middleX - 170, 75, "Made By: Ignacio Gonzalez Souza");
+    else
+    {
+        slSetForeColor(1, 1, 1, 1);
+        slSprite(unselectedMenu, 1266, 100, buttonWidth, butonHeight);
+    }
 }

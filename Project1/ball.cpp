@@ -25,11 +25,12 @@ void firstBallMovement(Ball& ball)
 
 	if (randomDirection == 1)
 	{
+		ball.speedY = 500;
 		ball.speedX *= -1;
 
 		if (randomDirection == 1)
 		{
-			ball.speedY *= -1;
+			ball.speedY = 500;
 			ball.speedX *= -1;
 		}
 	}
@@ -37,7 +38,7 @@ void firstBallMovement(Ball& ball)
 	{
 		if (randomDirection == 1)
 		{
-			ball.speedY *= -1;
+			ball.speedY = 500;
 			ball.speedX *= -1;
 		}
 	}
