@@ -1,0 +1,6 @@
+﻿  File not found - Assets
+  0 File(s) copied
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(149,5): error MSB3073: The command "cd "C:\Users\Nacho\Desktop\sigil\Release\"
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(149,5): error MSB3073: mkdir "Assets"
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(149,5): error MSB3073: xcopy /y "C:\Users\Nacho\Desktop\sigil\Assets" "C:\Users\Nacho\Desktop\sigil\Release\Assets"
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(149,5): error MSB3073: :VCEnd" exited with code 4.

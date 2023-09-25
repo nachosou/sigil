@@ -58,6 +58,8 @@ void main()
 	setSprites(slLoadTexture("Assets/brick1.png"), slLoadTexture("Assets/brick2.png"));
 
 	int paddleSprite = slLoadTexture("Assets/paddle.png");
+	int bigPaddle = slLoadTexture("Assets/bigPaddle.png");
+	int smallPaddle = slLoadTexture("Assets/smallPaddle.png");
 	int aliveHeart = slLoadTexture("Assets/aliveHeart.png");
 	int deathHeart = slLoadTexture("Assets/deathHeart.png");
 

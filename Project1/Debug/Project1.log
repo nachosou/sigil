@@ -1,4 +1,5 @@
 ﻿  C:\Users\Nacho\Desktop\sigil\Project1\Assets\aliveHeart.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\bigPaddle.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\breakRules.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\brick1.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\brick2.png
@@ -21,10 +22,11 @@
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\playButtonUnselected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\rulesButtonSelected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\rulesButtonUnselected.png
-  23 File(s) copied
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\smallPaddle.png
+  25 File(s) copied
   FileName.cpp
 C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(29,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(258,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(259,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(413,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(260,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(261,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(415,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\Debug\Project1.exe
