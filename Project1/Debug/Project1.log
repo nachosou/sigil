@@ -8,6 +8,9 @@
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\exitButtonSelected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\exitButtonUnselected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\fondo.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\historiaComienzo.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\historiaFinalMuerte.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\historiaFinalVida.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\logo.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\menuButtonSelected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\menuButtonUnselected.png
@@ -18,10 +21,10 @@
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\playButtonUnselected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\rulesButtonSelected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\rulesButtonUnselected.png
-  20 File(s) copied
+  23 File(s) copied
   FileName.cpp
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(25,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(232,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(233,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(389,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(29,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(258,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(259,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(413,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\Debug\Project1.exe

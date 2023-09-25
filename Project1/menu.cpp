@@ -11,14 +11,14 @@ void drawMenu(GameScenes& actualScene, int font, int widthScreen, int selectedPl
     int height = 75;
     int width = 150;
 
-    GameScenes playScene = GameScenes::Game;
+    GameScenes historyScene = GameScenes::History;
     GameScenes rulesScene = GameScenes::Rules;
     GameScenes exitScene = GameScenes::Exit;
 
     slSetForeColor(1, 1, 1, 1);
     slSprite(logo, middleButtons, 600, 400, 200);
 
-    menuButtons(actualScene, playScene, middleButtons, 400, width, height, unselectedPlay, selectedPlay);
+    menuButtons(actualScene, historyScene, middleButtons, 400, width, height, unselectedPlay, selectedPlay);
 
     menuButtons(actualScene, rulesScene, middleButtons, 300, width, height, unselectedRules, selectedRules);
 

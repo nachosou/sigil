@@ -18,8 +18,12 @@ void collisionWithBlocks(Ball& ball, Block blocks[], int numBlock, int& howManyB
 void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Block blocks[], int numBlock, int& howManyBlocksDied);
 void mainGame(GameScenes& actualScene, Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[], int font, int& howManyBlocksDied);
 void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[], int widthScreen, int heightScreen, int wallPaper, int paddleSprite, int aliveHeart, int deathHeart, int playerLife);
-void winOrLose(int playerLife, int howManyBlocksDied, int numBlock, int font, int widthScreen);
+void winOrLose(int playerLife, int howManyBlocksDied, int numBlock, int font, int widthScreen, GameScenes& actualScene);
 void resetStats(Block blocks[], int numBlock, Ball& ball, Paddle& paddle, int& playerLife);
+void loseScreen(int wallpaperLose, int widthScreen, int heightScreen, int selectedMenu, int unselectedMenu, GameScenes& actualScene);
+void winScreen(int wallpaperWin, int widthScreen, int heightScreen, int selectedMenu, int unselectedMenu, GameScenes& actualScene);
+void buttons(GameScenes& actualScene, GameScenes scene, int buttonX, int buttonY, int width, int height, int buttonUnselected, int buttonSelected);
+void historyScreen(int wallpaperHistory, int widthScreen, int heightScreen, int selectedPlay, int unselectedPlay, GameScenes& actualScene);
 
 void main()
 {
@@ -71,6 +75,9 @@ void main()
 	int moveRules = slLoadTexture("Assets/moveRules.png");
 	int breakRules = slLoadTexture("Assets/breakRules.png");
 	int deathRules = slLoadTexture("Assets/deathRules.png");
+	int wallpaperHistory = slLoadTexture("Assets/historiaComienzo.png");
+	int wallpaperLose = slLoadTexture("Assets/historiaFinalMuerte.png");
+	int wallpaperWin = slLoadTexture("Assets/historiaFinalVida.png");
 
 	int font = slLoadFont("Assets/Monoton-Regular.ttf");
 	slSetFont(font, 20);
@@ -95,6 +102,15 @@ void main()
 		case GameScenes::Exit:
 			exitProgram = false;
 			break;
+		case GameScenes::History:
+			historyScreen(wallpaperHistory, widthScreen, heightScreen, selectedPlay, unselectedPlay, actualScene);
+			break;
+		case GameScenes::Win:
+			winScreen(wallpaperWin, widthScreen, heightScreen, selectedMenu, unselectedMenu, actualScene);
+			break;
+		case GameScenes::Lose:
+			loseScreen(wallpaperLose, widthScreen, heightScreen, selectedMenu, unselectedMenu, actualScene);
+			break;
 		default:
 			break;
 		}
@@ -113,6 +129,16 @@ void main()
 		case GameScenes::Exit:
 			exitProgram = false;
 			break;
+		case GameScenes::History:
+			historyScreen(wallpaperHistory, widthScreen, heightScreen, selectedPlay, unselectedPlay, actualScene);
+			break;
+		case GameScenes::Win:
+			winScreen(wallpaperWin, widthScreen, heightScreen, selectedMenu, unselectedMenu, actualScene);
+			break;
+		case GameScenes::Lose:
+			loseScreen(wallpaperLose, widthScreen, heightScreen, selectedMenu, unselectedMenu, actualScene);
+			break;
+
 		default:
 			break;
 		}
@@ -141,7 +167,7 @@ void mainGame(GameScenes& actualScene, Ball& ball, int widthScreen, int heightSc
 
 	recochet(ball, heightScreen, widthScreen, paddle, blocks, numBlock, howManyBlocksDied);
 
-	winOrLose(playerLife, howManyBlocksDied, numBlock, font, widthScreen);
+	winOrLose(playerLife, howManyBlocksDied, numBlock, font, widthScreen, actualScene);
 }
 
 void drawMainGame(Paddle paddle, Ball ball, int numBlock, Block blocks[], int widthScreen, int heightScreen, int wallPaper, int paddleSprite, int aliveHeart, int deathHeart, int playerLife)
@@ -235,18 +261,16 @@ void lifes(int& playerLife, Ball& ball, int widthScreen, int heightScreen, bool&
 	}
 }
 
-void winOrLose(int playerLife, int howManyBlocksDied, int numBlock, int font, int widthScreen)
+void winOrLose(int playerLife, int howManyBlocksDied, int numBlock, int font, int widthScreen, GameScenes& actualScene)
 {
 	if (playerLife <= 0)
 	{
-		slSetFont(font, 100);
-		slText(widthScreen / 2 - 275, 400, "PERDISTE");
+		actualScene = GameScenes::Lose;
 	}
 
 	if (howManyBlocksDied >= numBlock && playerLife > 0)
 	{
-		slSetFont(font, 100);
-		slText(widthScreen / 2 - 250, 400, "GANASTE");
+		actualScene = GameScenes::Win;
 	}
 }
 
@@ -396,4 +420,55 @@ void resetStats(Block blocks[], int numBlock, Ball& ball, Paddle& paddle, int& p
 	ball.radius = 15;
 
 	playerLife = 3;
+}
+
+void loseScreen(int wallpaperLose, int widthScreen, int heightScreen, int selectedMenu, int unselectedMenu, GameScenes& actualScene)
+{
+	GameScenes backToMenu = GameScenes::Menu;
+
+	slSetForeColor(1, 1, 1, 1);
+	slSprite(wallpaperLose, widthScreen / 2, heightScreen / 2, widthScreen, heightScreen);
+
+	buttons(actualScene, backToMenu, 1266, 100, 150, 75, unselectedMenu, selectedMenu);
+}
+
+void winScreen(int wallpaperWin, int widthScreen, int heightScreen, int selectedMenu, int unselectedMenu, GameScenes& actualScene)
+{
+	GameScenes backToMenu = GameScenes::Menu;
+
+	slSetForeColor(1, 1, 1, 1);
+	slSprite(wallpaperWin, widthScreen / 2, heightScreen / 2, widthScreen, heightScreen);
+
+	buttons(actualScene, backToMenu, 1266, 100, 150, 75, unselectedMenu, selectedMenu);
+}
+
+void historyScreen(int wallpaperHistory, int widthScreen, int heightScreen, int selectedPlay, int unselectedPlay, GameScenes& actualScene)
+{
+	GameScenes startGame = GameScenes::Game;
+
+	slSetForeColor(1, 1, 1, 1);
+	slSprite(wallpaperHistory, widthScreen / 2, heightScreen / 2, widthScreen, heightScreen);
+
+	buttons(actualScene, startGame, 1266, 100, 150, 75, unselectedPlay, selectedPlay);
+}
+
+void buttons(GameScenes& actualScene, GameScenes scene, int buttonX, int buttonY, int width, int height, int buttonUnselected, int buttonSelected)
+{
+	if (slGetMouseX() >= buttonX - width / 2
+		&& slGetMouseX() <= buttonX + width / 2
+		&& slGetMouseY() >= buttonY - height / 2
+		&& slGetMouseY() <= buttonY + height / 2)
+	{
+		slSetForeColor(1, 1, 1, 1);
+		slSprite(buttonSelected, buttonX, buttonY, width, height);
+		if (slGetMouseButton(SL_MOUSE_BUTTON_LEFT))
+		{
+			actualScene = scene;
+		}
+	}
+	else
+	{
+		slSetForeColor(1, 1, 1, 1);
+		slSprite(buttonUnselected, buttonX, buttonY, width, height);
+	}
 }

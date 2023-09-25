@@ -5,5 +5,8 @@ enum class GameScenes
 	Menu,
 	Game,
 	Rules,
-	Exit
+	Exit,
+	History,
+	Win,
+	Lose
 };
