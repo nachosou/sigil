@@ -149,6 +149,7 @@ xcopy /y "$(SolutionDir)Assets" "$(OutDir)Assets"</Command>
     <ClCompile Include="FileName.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="paddle.cpp" />
+    <ClCompile Include="powerUp.cpp" />
     <ClCompile Include="rules.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +157,7 @@ xcopy /y "$(SolutionDir)Assets" "$(OutDir)Assets"</Command>
     <ClInclude Include="blocks.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="paddle.h" />
+    <ClInclude Include="powerUp.h" />
     <ClInclude Include="rules.h" />
     <ClInclude Include="scenes.h" />
   </ItemGroup>
