@@ -1,5 +1,4 @@
 ﻿  C:\Users\Nacho\Desktop\sigil\Project1\Assets\aliveHeart.png
-  C:\Users\Nacho\Desktop\sigil\Project1\Assets\bigPaddle.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\breakRules.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\brick1.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\brick2.png
@@ -9,6 +8,7 @@
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\exitButtonSelected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\exitButtonUnselected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\fondo.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\goldHeart.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\historiaComienzo.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\historiaFinalMuerte.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\historiaFinalVida.png
@@ -22,13 +22,15 @@
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\playButtonUnselected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\rulesButtonSelected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\rulesButtonUnselected.png
-  C:\Users\Nacho\Desktop\sigil\Project1\Assets\smallPaddle.png
-  25 File(s) copied
+  24 File(s) copied
   FileName.cpp
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(32,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(261,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(262,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(416,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(488,25): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(499,30): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(35,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(272,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(273,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(427,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(507,30): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(534,30): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(561,30): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  rules.cpp
+  Generating Code...
   Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\Debug\Project1.exe

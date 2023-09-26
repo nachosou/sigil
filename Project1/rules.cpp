@@ -1,7 +1,7 @@
 #include "rules.h"
 #include "include/sl.h"
 
-void drawRules(GameScenes& actualScene, int wallPaper, int font, int heightScreen, int breakRules, int moveRules, int deathRules, int selectedMenu, int unselectedMenu)
+void drawRules(GameScenes& actualScene, int wallPaper, int font, int heightScreen, int breakRules, int moveRules, int deathRules, int powerRules, int selectedMenu, int unselectedMenu)
 {
     int rulesWidth = 300;
     int rulesHeight = 300;
@@ -17,6 +17,8 @@ void drawRules(GameScenes& actualScene, int wallPaper, int font, int heightScree
     slSprite(moveRules, 700, 500, rulesWidth, rulesHeight);
 
     slSprite(deathRules, 200, 200, rulesWidth, rulesHeight);
+
+    slSprite(powerRules, 700, 200, rulesWidth, rulesHeight);
 
     if (slGetMouseX() >= 1266 - buttonWidth / 2
         && slGetMouseX() <= 1266 + buttonWidth / 2

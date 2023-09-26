@@ -15,18 +15,21 @@ bool collisionWithUpFrame(Ball ball, int heightScreen);
 bool collisionWithPlayer(Ball ball, Paddle& paddle);
 bool collisionWithRightFrame(Ball ball, int widthScreen);
 bool collisionWithLeftFrame(Ball ball, int widthScreen);
-bool paddleWhitPowerUp(Paddle paddle, PowerUps powerUp);
+bool paddleCollisionPowerUp(Paddle paddle, PowerUps powerUp);
 void collisionWithBlocks(Ball& ball, Block blocks[], int numBlock, int& howManyBlocksDied);
 void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Block blocks[], int numBlock, int& howManyBlocksDied);
 void mainGame(GameScenes& actualScene, Ball& ball, int widthScreen, int heightScreen, Paddle& paddle, int& playerLife, bool& newScene, int numBlock, Block blocks[], int font, int& howManyBlocksDied);
-void drawMainGame(Paddle paddle, Ball ball, PowerUps& powerUp, int numBlock, Block blocks[], int widthScreen, int heightScreen, int wallPaper, int paddleSprite, int aliveHeart, int deathHeart, int& playerLife, bool& isPowerUpActive);
+void drawMainGame(Paddle& paddle, Ball ball, PowerUps& heartPowerUp, PowerUps& deathPowerUp, PowerUps& goldPowerUp, int numBlock, Block blocks[], int widthScreen, int heightScreen, int wallPaper, int paddleSprite, int aliveHeart, int deathHeart, int goldHeart, int& playerLife, bool& isPowerUpHeartActive, bool& isPowerUpGoldHeartActive, bool& isPowerUpDeathHeartActive, bool& deathHeartStopSubtract, bool& heartStopAdd);
 void winOrLose(int playerLife, int howManyBlocksDied, int numBlock, int font, int widthScreen, GameScenes& actualScene);
-void resetStats(Block blocks[], int numBlock, Ball& ball, Paddle& paddle, int& playerLife, bool& isPowerUpActive);
+void resetStats(Block blocks[], int numBlock, Ball& ball, Paddle& paddle, int& playerLife, bool& isPowerUpHeartActive, bool& isPowerUpGoldHeartActive, bool& isPowerUpDeathHeartActive, bool& heartStopAdd, bool& deathHeartStopSubtract);
 void loseScreen(int wallpaperLose, int widthScreen, int heightScreen, int selectedMenu, int unselectedMenu, GameScenes& actualScene);
 void winScreen(int wallpaperWin, int widthScreen, int heightScreen, int selectedMenu, int unselectedMenu, GameScenes& actualScene);
 void buttons(GameScenes& actualScene, GameScenes scene, int buttonX, int buttonY, int width, int height, int buttonUnselected, int buttonSelected);
 void historyScreen(int wallpaperHistory, int widthScreen, int heightScreen, int selectedPlay, int unselectedPlay, GameScenes& actualScene);
-void bigPaddlePowerUp(PowerUps& powerUp, Paddle& paddle, Block blocks[], int widthScreen, int heightScreen, int sprite, int& playerLife, bool& isPowerUpActive);
+void heartPowerUpCreator(PowerUps& powerUp, Paddle& paddle, Block blocks[], int sprite, int& playerLife, bool& isPowerUpActive, bool& heartStopAdd);
+void badHeartPowerUpCreator(PowerUps& powerUp, Paddle& paddle, Block blocks[], int sprite, int& playerLife, bool& isPowerUpActive, bool& deathHeartStopSubtract);
+void goldHeartPowerUpCreator(PowerUps& powerUp, Paddle& paddle, Block blocks[], int sprite, int& playerLife, bool& isPowerUpActive);
+void drawPaddle(Paddle& paddle, int paddleSprite);
 
 void main()
 {
@@ -36,12 +39,19 @@ void main()
 	bool exitProgram = true;
 	const int numBlock = 42;
 	int howManyBlocksDied = 0;
-	bool isPowerUpActive = true;
+	bool isPowerUpHeartActive = true;
+	bool isPowerUpGoldHeartActive = true;
+	bool isPowerUpDeathHeartActive = true;
+	bool deathHeartStopSubtract = true;
+	bool heartStopAdd = true;
+	float timer = 0;
 
 	Paddle paddle;
 	Ball ball;
 	Block blocks[numBlock];
-	PowerUps powerUp;
+	PowerUps heartPowerUp;
+	PowerUps badHeartPowerUp;
+	PowerUps goldHeartPowerUp;
 
 	startBall(ball);
 	startPaddle(paddle);
@@ -57,10 +67,9 @@ void main()
 	setSprites(slLoadTexture("Assets/brick1.png"), slLoadTexture("Assets/brick2.png"));
 
 	int paddleSprite = slLoadTexture("Assets/paddle.png");
-	int bigPaddle = slLoadTexture("Assets/bigPaddle.png");
-	int smallPaddle = slLoadTexture("Assets/smallPaddle.png");
 	int aliveHeart = slLoadTexture("Assets/aliveHeart.png");
 	int deathHeart = slLoadTexture("Assets/deathHeart.png");
+	int goldHeart = slLoadTexture("Assets/goldHeart.png");
 
 	int selectedPlay = slLoadTexture("Assets/playButtonSelected.png");;
 	int unselectedPlay = slLoadTexture("Assets/playButtonUnselected.png");
@@ -76,6 +85,7 @@ void main()
 	int moveRules = slLoadTexture("Assets/moveRules.png");
 	int breakRules = slLoadTexture("Assets/breakRules.png");
 	int deathRules = slLoadTexture("Assets/deathRules.png");
+	int powerRules = slLoadTexture("Assets/powerRules.png");
 	int wallpaperHistory = slLoadTexture("Assets/historiaComienzo.png");
 	int wallpaperLose = slLoadTexture("Assets/historiaFinalMuerte.png");
 	int wallpaperWin = slLoadTexture("Assets/historiaFinalVida.png");
@@ -91,14 +101,14 @@ void main()
 		switch (actualScene)
 		{
 		case GameScenes::Menu:
-			resetStats(blocks, numBlock, ball, paddle, playerLife, isPowerUpActive);
+			resetStats(blocks, numBlock, ball, paddle, playerLife, isPowerUpHeartActive, isPowerUpGoldHeartActive, isPowerUpDeathHeartActive, heartStopAdd, deathHeartStopSubtract);
 			drawMenu(actualScene, font, widthScreen, selectedPlay, unselectedPlay, selectedRules, unselectedRules, selectedExit, unselectedExit, credits, logo, wallPaper);
 			break;
 		case GameScenes::Game:
 			mainGame(actualScene, ball, widthScreen, heightScreen, paddle, playerLife, newScene, numBlock, blocks, font, howManyBlocksDied);
 			break;
 		case GameScenes::Rules:
-			drawRules(actualScene, wallPaper, font, heightScreen, breakRules, moveRules, deathRules, selectedMenu, unselectedMenu);
+			drawRules(actualScene, wallPaper, font, heightScreen, breakRules, moveRules, deathRules, powerRules, selectedMenu, unselectedMenu);
 			break;
 		case GameScenes::Exit:
 			exitProgram = false;
@@ -122,10 +132,10 @@ void main()
 			drawMenu(actualScene, font, widthScreen, selectedPlay, unselectedPlay, selectedRules, unselectedRules, selectedExit, unselectedExit, credits, logo, wallPaper);
 			break;
 		case GameScenes::Game:
-			drawMainGame(paddle, ball, powerUp, numBlock, blocks, widthScreen, heightScreen, wallPaper, paddleSprite, aliveHeart, deathHeart, playerLife, isPowerUpActive);
+			drawMainGame(paddle, ball, heartPowerUp, goldHeartPowerUp, badHeartPowerUp, numBlock, blocks, widthScreen, heightScreen, wallPaper, paddleSprite, aliveHeart, deathHeart, goldHeart, playerLife, isPowerUpHeartActive, isPowerUpGoldHeartActive, isPowerUpDeathHeartActive, deathHeartStopSubtract, heartStopAdd);
 			break;
 		case GameScenes::Rules:
-			drawRules(actualScene, wallPaper, font, heightScreen, breakRules, moveRules, deathRules, selectedMenu, unselectedMenu);
+			drawRules(actualScene, wallPaper, font, heightScreen, breakRules, moveRules, deathRules, powerRules, selectedMenu, unselectedMenu);
 			break;
 		case GameScenes::Exit:
 			exitProgram = false;
@@ -171,22 +181,23 @@ void mainGame(GameScenes& actualScene, Ball& ball, int widthScreen, int heightSc
 	winOrLose(playerLife, howManyBlocksDied, numBlock, font, widthScreen, actualScene);
 }
 
-void drawMainGame(Paddle paddle, Ball ball, PowerUps& powerUp, int numBlock, Block blocks[], int widthScreen, int heightScreen, int wallPaper, int paddleSprite, int aliveHeart, int deathHeart, int& playerLife, bool& isPowerUpActive)
+void drawMainGame(Paddle& paddle, Ball ball, PowerUps& heartPowerUp, PowerUps& deathPowerUp, PowerUps& goldPowerUp, int numBlock, Block blocks[], int widthScreen, int heightScreen, int wallPaper, int paddleSprite, int aliveHeart, int deathHeart, int goldHeart, int& playerLife, bool& isPowerUpHeartActive, bool& isPowerUpGoldHeartActive, bool& isPowerUpDeathHeartActive, bool& deathHeartStopSubtract, bool& heartStopAdd)
 {
 	slSetBackColor(1, 1, 1);
 	slSprite(wallPaper, widthScreen / 2, heightScreen / 2, widthScreen, heightScreen);
 
-	slSetForeColor(1, 1, 1, 1);
-	slSprite(paddleSprite, paddle.positionX + paddle.width / 2, paddle.positionY + paddle.height / 2, paddle.width, paddle.height);
-
 	slSetForeColor(0, 0, 0, 1);
 	slCircleFill(ball.positionX, ball.positionY, ball.radius, 75);
+
+	drawPaddle(paddle, paddleSprite);
 
 	drawBlocks(blocks, numBlock);
 
 	drawLifes(playerLife, aliveHeart, deathHeart);
 
-	bigPaddlePowerUp(powerUp, paddle, blocks, widthScreen, heightScreen, aliveHeart, playerLife, isPowerUpActive);
+	heartPowerUpCreator(heartPowerUp, paddle, blocks, aliveHeart, playerLife, isPowerUpHeartActive, heartStopAdd);
+	badHeartPowerUpCreator(deathPowerUp, paddle, blocks, deathHeart, playerLife, isPowerUpDeathHeartActive, deathHeartStopSubtract);
+	goldHeartPowerUpCreator(goldPowerUp, paddle, blocks, goldHeart, playerLife, isPowerUpGoldHeartActive);
 }
 
 void recochet(Ball& ball, int heightScreen, int widthScreen, Paddle paddle, Block blocks[], int numBlock, int& howManyBlocksDied)
@@ -394,7 +405,7 @@ void drawLifes(int playerLife, int aliveHeart, int deathHeart)
 	}
 }
 
-void resetStats(Block blocks[], int numBlock, Ball& ball, Paddle& paddle, int& playerLife, bool& isPowerUpActive)
+void resetStats(Block blocks[], int numBlock, Ball& ball, Paddle& paddle, int& playerLife, bool& isPowerUpHeartActive, bool& isPowerUpGoldHeartActive, bool& isPowerUpDeathHeartActive, bool& heartStopAdd, bool& deathHeartStopSubtract)
 {
 	const int widthScreen = 1366;
 	const int heightScreen = 768;
@@ -422,7 +433,11 @@ void resetStats(Block blocks[], int numBlock, Ball& ball, Paddle& paddle, int& p
 	ball.speedY = 500;
 	ball.radius = 15;
 
-	isPowerUpActive = true;
+	isPowerUpHeartActive = true;
+	isPowerUpGoldHeartActive = true;
+	isPowerUpDeathHeartActive = true;
+	heartStopAdd = true;
+	deathHeartStopSubtract = true;
 	playerLife = 3;
 }
 
@@ -477,17 +492,64 @@ void buttons(GameScenes& actualScene, GameScenes scene, int buttonX, int buttonY
 	}
 }
 
-//void heartPowerUp()
-//{
-//
-//}
-
-void bigPaddlePowerUp(PowerUps& powerUp, Paddle& paddle, Block blocks[], int widthScreen, int heightScreen, int sprite, int& playerLife, bool& isPowerUpActive)
+void heartPowerUpCreator(PowerUps& powerUp, Paddle& paddle, Block blocks[], int sprite, int& playerLife, bool& isPowerUpActive, bool& heartStopAdd)
 {
-	float timer = 0;
-	timer += slGetDeltaTime();
 	int speedY = 300;
-	bool collitionWithPaddle = paddleWhitPowerUp(paddle, powerUp);
+	bool collitionWithPaddle = paddleCollisionPowerUp(paddle, powerUp);
+
+	if (!blocks[18].isActive && isPowerUpActive)
+	{
+		powerUp.positionX = blocks[18].positionX;
+		powerUp.positionY = blocks[18].positionY;
+		isPowerUpActive = false;
+	}
+	
+	powerUp.positionY -= speedY * slGetDeltaTime();
+
+	if (!collitionWithPaddle)
+	{
+		slSprite(sprite, powerUp.positionX, powerUp.positionY, powerUp.width, powerUp.height);
+	}
+
+	if (collitionWithPaddle && playerLife < 3 && heartStopAdd)
+	{
+		isPowerUpActive = false;
+		playerLife++;
+		heartStopAdd = false;
+	}
+}
+
+void badHeartPowerUpCreator(PowerUps& powerUp, Paddle& paddle, Block blocks[], int sprite, int& playerLife, bool& isPowerUpActive, bool& deathHeartStopSubtract)
+{
+	int speedY = 300;
+	bool collitionWithPaddle = paddleCollisionPowerUp(paddle, powerUp);
+
+	if (!blocks[30].isActive && isPowerUpActive)
+	{
+		powerUp.positionX = blocks[30].positionX;
+		powerUp.positionY = blocks[30].positionY;
+		isPowerUpActive = false;
+	}
+
+	powerUp.positionY -= speedY * slGetDeltaTime();
+
+	if (!collitionWithPaddle)
+	{
+		slSprite(sprite, powerUp.positionX, powerUp.positionY, powerUp.width, powerUp.height);
+	}
+
+	if (collitionWithPaddle && deathHeartStopSubtract)
+	{
+		isPowerUpActive = false;
+		playerLife--;
+		deathHeartStopSubtract = false;
+	}
+}
+
+void goldHeartPowerUpCreator(PowerUps& powerUp, Paddle& paddle, Block blocks[], int sprite, int& playerLife, bool& isPowerUpActive)
+{
+	int speedY = 300;
+	bool collitionWithPaddle = paddleCollisionPowerUp(paddle, powerUp);
 
 	if (!blocks[5].isActive && isPowerUpActive)
 	{
@@ -503,27 +565,28 @@ void bigPaddlePowerUp(PowerUps& powerUp, Paddle& paddle, Block blocks[], int wid
 		slSprite(sprite, powerUp.positionX, powerUp.positionY, powerUp.width, powerUp.height);
 	}
 
-	if (collitionWithPaddle && playerLife < 3)
+	if (collitionWithPaddle)
 	{
 		isPowerUpActive = false;
-		playerLife++;
+		playerLife = 3;
 	}
 }
 
-//bool smallPaddlePowerDpwn(Paddle& paddle)
-//{
-//
-//}
-
-bool paddleWhitPowerUp(Paddle paddle, PowerUps powerUp)
+bool paddleCollisionPowerUp(Paddle paddle, PowerUps powerUp)
 {
 	if (paddle.positionX + paddle.width >= powerUp.positionX &&
 		paddle.positionX <= powerUp.positionX + powerUp.width &&
 		paddle.positionY + paddle.height >= powerUp.positionY !=
-		paddle.positionY - 200 >= powerUp.positionY &&
+		paddle.positionY - 300 >= powerUp.positionY &&
 		paddle.positionY <= powerUp.positionY + powerUp.height)
 	{
 		return true;
 	}
 	return false;
+}
+
+void drawPaddle(Paddle& paddle, int paddleSprite)
+{
+	slSetForeColor(1, 1, 1, 1);
+	slSprite(paddleSprite, paddle.positionX + paddle.width / 2, paddle.positionY + paddle.height / 2, paddle.width, paddle.height);
 }
