@@ -18,19 +18,14 @@
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\Monoton-Regular.ttf
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\moveRules.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\paddle.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\pauseRules.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\playButtonSelected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\playButtonUnselected.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\powerRules.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\resumeButtonSelected.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\resumeButtonUnselected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\rulesButtonSelected.png
   C:\Users\Nacho\Desktop\sigil\Project1\Assets\rulesButtonUnselected.png
-  24 File(s) copied
-  FileName.cpp
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(35,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(272,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(273,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(427,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(507,30): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(534,30): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(561,30): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  28 File(s) copied
   rules.cpp
-  Generating Code...
   Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\Debug\Project1.exe

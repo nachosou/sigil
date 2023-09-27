@@ -8,5 +8,6 @@ enum class GameScenes
 	Exit,
 	History,
 	Win,
-	Lose
+	Lose,
+	Pause
 };

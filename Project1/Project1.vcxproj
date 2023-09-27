@@ -146,17 +146,21 @@ xcopy /y "$(SolutionDir)Assets" "$(OutDir)Assets"</Command>
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="blocks.cpp" />
+    <ClCompile Include="buttons.cpp" />
     <ClCompile Include="FileName.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="paddle.cpp" />
+    <ClCompile Include="pause.cpp" />
     <ClCompile Include="powerUp.cpp" />
     <ClCompile Include="rules.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ball.h" />
     <ClInclude Include="blocks.h" />
+    <ClInclude Include="buttons.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="paddle.h" />
+    <ClInclude Include="pause.h" />
     <ClInclude Include="powerUp.h" />
     <ClInclude Include="rules.h" />
     <ClInclude Include="scenes.h" />
