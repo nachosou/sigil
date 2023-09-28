@@ -13,3 +13,5 @@ struct Paddle
 void startPaddle(Paddle& paddle);
 
 void paddleMovement(Paddle& paddle, int widthScreen);
+
+void drawPaddle(Paddle& paddle, int paddleSprite);

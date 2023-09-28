@@ -28,3 +28,9 @@ void paddleMovement(Paddle& paddle, int widthScreen)
 		}
 	}
 }
+
+void drawPaddle(Paddle& paddle, int paddleSprite)
+{
+	slSetForeColor(1, 1, 1, 1);
+	slSprite(paddleSprite, paddle.positionX + paddle.width / 2, paddle.positionY + paddle.height / 2, paddle.width, paddle.height);
+}

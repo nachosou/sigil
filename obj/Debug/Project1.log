@@ -1,0 +1,42 @@
+﻿  C:\Users\Nacho\Desktop\sigil\Project1\Assets\aliveHeart.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\breakRules.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\brick1.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\brick2.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\creditos.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\deathHeart.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\deathRules.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\exitButtonSelected.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\exitButtonUnselected.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\fondo.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\goldHeart.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\historiaComienzo.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\historiaFinalMuerte.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\historiaFinalVida.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\logo.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\menuButtonSelected.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\menuButtonUnselected.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\Monoton-Regular.ttf
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\moveRules.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\paddle.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\pauseRules.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\playButtonSelected.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\playButtonUnselected.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\powerRules.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\resumeButtonSelected.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\resumeButtonUnselected.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\rulesButtonSelected.png
+  C:\Users\Nacho\Desktop\sigil\Project1\Assets\rulesButtonUnselected.png
+  28 File(s) copied
+  C:\Users\Nacho\Desktop\sigil\lib\glew32.dll
+  C:\Users\Nacho\Desktop\sigil\lib\OpenAL32.dll
+  C:\Users\Nacho\Desktop\sigil\lib\sigil.dll
+  C:\Users\Nacho\Desktop\sigil\lib\wrap_oal.dll
+  4 File(s) copied
+  FileName.cpp
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(278,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(279,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(435,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  main.cpp
+C:\Users\Nacho\Desktop\sigil\Project1\main.cpp(4,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  Generating Code...
+  Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\bin\Debug\Project1.exe

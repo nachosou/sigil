@@ -8,6 +8,7 @@
 #include "powerUp.h"
 #include "buttons.h"
 #include "pause.h"
+#include "game.h"
 
 using namespace std;
 
@@ -26,9 +27,8 @@ void resetStats(Block blocks[], int numBlock, Ball& ball, Paddle& paddle, int& p
 void loseScreen(int wallpaperLose, int widthScreen, int heightScreen, int selectedMenu, int unselectedMenu, GameScenes& actualScene);
 void winScreen(int wallpaperWin, int widthScreen, int heightScreen, int selectedMenu, int unselectedMenu, GameScenes& actualScene);
 void historyScreen(int wallpaperHistory, int widthScreen, int heightScreen, int selectedPlay, int unselectedPlay, GameScenes& actualScene);
-void drawPaddle(Paddle& paddle, int paddleSprite);
 
-void main()
+void runProgram()
 {
 	const int widthScreen = 1366;
 	const int heightScreen = 768;
@@ -477,11 +477,5 @@ void historyScreen(int wallpaperHistory, int widthScreen, int heightScreen, int 
 	slSprite(wallpaperHistory, widthScreen / 2, heightScreen / 2, widthScreen, heightScreen);
 
 	buttons(actualScene, startGame, 1266, 100, 150, 75, unselectedPlay, selectedPlay);
-}
-
-void drawPaddle(Paddle& paddle, int paddleSprite)
-{
-	slSetForeColor(1, 1, 1, 1);
-	slSprite(paddleSprite, paddle.positionX + paddle.width / 2, paddle.positionY + paddle.height / 2, paddle.width, paddle.height);
 }
 
