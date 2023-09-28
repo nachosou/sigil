@@ -33,10 +33,29 @@
   C:\Users\Nacho\Desktop\sigil\lib\wrap_oal.dll
   4 File(s) copied
   FileName.cpp
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(278,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(279,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nacho\Desktop\sigil\Project1\FileName.cpp(435,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\src\gameManagement\FileName.cpp(278,33): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\src\gameManagement\FileName.cpp(279,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\src\gameManagement\FileName.cpp(435,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  menu.cpp
+  pause.cpp
+  rules.cpp
   main.cpp
-C:\Users\Nacho\Desktop\sigil\Project1\main.cpp(4,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\Nacho\Desktop\sigil\src\main.cpp(4,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  ball.cpp
+C:\Users\Nacho\Desktop\sigil\src\objects\ball.cpp(17,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\src\objects\ball.cpp(18,32): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\src\objects\ball.cpp(23,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  blocks.cpp
+C:\Users\Nacho\Desktop\sigil\src\objects\blocks.cpp(17,51): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\src\objects\blocks.cpp(18,88): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  buttons.cpp
+  paddle.cpp
+C:\Users\Nacho\Desktop\sigil\src\objects\paddle.cpp(10,37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\src\objects\paddle.cpp(20,37): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\src\objects\paddle.cpp(27,37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  powerUp.cpp
+C:\Users\Nacho\Desktop\sigil\src\objects\powerUp.cpp(15,30): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\src\objects\powerUp.cpp(42,30): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Nacho\Desktop\sigil\src\objects\powerUp.cpp(69,30): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
   Generating Code...
   Project1.vcxproj -> C:\Users\Nacho\Desktop\sigil\bin\Debug\Project1.exe

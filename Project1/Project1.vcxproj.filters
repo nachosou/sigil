@@ -1,81 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Archivos de origen">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{bbae2f0e-20b7-4a19-8d46-363dd04b254d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Archivos de recursos">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="gameManagement">
+      <UniqueIdentifier>{05a4e6e3-e59b-421c-8b97-ff95ace498a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FileName.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\src\objects\ball.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="menu.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\src\objects\blocks.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="rules.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\src\objects\buttons.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="ball.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\src\objects\paddle.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="paddle.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\src\objects\powerUp.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
-    <ClCompile Include="blocks.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\gameManagement\FileName.cpp">
+      <Filter>gameManagement</Filter>
     </ClCompile>
-    <ClCompile Include="powerUp.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\src\gameManagement\menu.cpp">
+      <Filter>gameManagement</Filter>
     </ClCompile>
-    <ClCompile Include="buttons.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\src\gameManagement\pause.cpp">
+      <Filter>gameManagement</Filter>
     </ClCompile>
-    <ClCompile Include="pause.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="..\src\gameManagement\rules.cpp">
+      <Filter>gameManagement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="scenes.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\src\objects\ball.h">
+      <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="menu.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\src\objects\blocks.h">
+      <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="rules.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\src\objects\buttons.h">
+      <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="ball.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\src\objects\paddle.h">
+      <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="paddle.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\src\objects\powerUp.h">
+      <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="blocks.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\src\gameManagement\game.h">
+      <Filter>gameManagement</Filter>
     </ClInclude>
-    <ClInclude Include="powerUp.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\src\gameManagement\menu.h">
+      <Filter>gameManagement</Filter>
     </ClInclude>
-    <ClInclude Include="buttons.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\src\gameManagement\pause.h">
+      <Filter>gameManagement</Filter>
     </ClInclude>
-    <ClInclude Include="pause.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\src\gameManagement\rules.h">
+      <Filter>gameManagement</Filter>
     </ClInclude>
-    <ClInclude Include="game.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="..\src\gameManagement\scenes.h">
+      <Filter>gameManagement</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

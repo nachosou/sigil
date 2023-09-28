@@ -18,6 +18,30 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\gameManagement\FileName.cpp" />
+    <ClCompile Include="..\src\gameManagement\menu.cpp" />
+    <ClCompile Include="..\src\gameManagement\pause.cpp" />
+    <ClCompile Include="..\src\gameManagement\rules.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\objects\ball.cpp" />
+    <ClCompile Include="..\src\objects\blocks.cpp" />
+    <ClCompile Include="..\src\objects\buttons.cpp" />
+    <ClCompile Include="..\src\objects\paddle.cpp" />
+    <ClCompile Include="..\src\objects\powerUp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\gameManagement\game.h" />
+    <ClInclude Include="..\src\gameManagement\menu.h" />
+    <ClInclude Include="..\src\gameManagement\pause.h" />
+    <ClInclude Include="..\src\gameManagement\rules.h" />
+    <ClInclude Include="..\src\gameManagement\scenes.h" />
+    <ClInclude Include="..\src\objects\ball.h" />
+    <ClInclude Include="..\src\objects\blocks.h" />
+    <ClInclude Include="..\src\objects\buttons.h" />
+    <ClInclude Include="..\src\objects\paddle.h" />
+    <ClInclude Include="..\src\objects\powerUp.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -154,30 +178,6 @@ xcopy /y "$(SolutionDir)lib" "$(OutDir)"
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="ball.cpp" />
-    <ClCompile Include="blocks.cpp" />
-    <ClCompile Include="buttons.cpp" />
-    <ClCompile Include="FileName.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="menu.cpp" />
-    <ClCompile Include="paddle.cpp" />
-    <ClCompile Include="pause.cpp" />
-    <ClCompile Include="powerUp.cpp" />
-    <ClCompile Include="rules.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ball.h" />
-    <ClInclude Include="blocks.h" />
-    <ClInclude Include="buttons.h" />
-    <ClInclude Include="game.h" />
-    <ClInclude Include="menu.h" />
-    <ClInclude Include="paddle.h" />
-    <ClInclude Include="pause.h" />
-    <ClInclude Include="powerUp.h" />
-    <ClInclude Include="rules.h" />
-    <ClInclude Include="scenes.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
